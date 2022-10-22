@@ -1,0 +1,16 @@
+[
+  {
+    "name": "default",
+    "type": "postgres",
+    "host": "172.17.0.1",
+    "port": 5432,
+    "username": "postgres",
+    "password": "postgres",
+    "database": "inventory",
+    "entities": ["./src/models/**/*.ts"],
+    "migrations": ["./src/migrations/*.ts"],
+    "cli": {
+      "migrationsDir": "./src/migrations/"
+    }
+  }
+]
