@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-import { Branch } from 'src/branchs/branch.entity';
+import { Branch } from 'src/branches/branch.entity';
 
 @Entity()
 export class AirConditioner {
@@ -16,6 +16,6 @@ export class AirConditioner {
     @Column()
     btu: number;
 
-    @ManyToOne(type => Branch, branch => branch.airConditioners)
+    @ManyToOne(type => Branch, branch => branch.airConditioners, { onDelete: "CASCADE" })
     branch: Branch;
 }

@@ -1,14 +1,13 @@
 import { AirConditionersModule } from './airConditioners/airConditioners.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { BranchsModule } from './branchs/branchs.module';
-import { ComputersModule } from './computers/airConditioners.module';
+import { BranchesModule } from './branches/branches.module';
+import { ComputersModule } from './computers/computers.module';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
-    // TypeOrmModule.forRoot(configService.getTypeOrmConfig())
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: '172.17.0.1',
@@ -19,7 +18,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       autoLoadEntities: true,
       synchronize: true,
     }),
-    BranchsModule, AirConditionersModule, ComputersModule
+    BranchesModule, AirConditionersModule, ComputersModule
   ],
   controllers: [AppController],
   providers: [AppService],

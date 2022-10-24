@@ -5,6 +5,7 @@ import {
     Get,
     Param,
     Post,
+    Put,
 } from '@nestjs/common';
 import { Computer } from './computer.entity';
 import { ComputersService } from './computers.service';
@@ -19,6 +20,11 @@ export class ComputersController {
     @Post()
     create(@Body() createComputerDto: CreateComputerDto): Promise<Computer> {
         return this.computersService.create(createComputerDto);
+    }
+
+    @Put(':id')
+    edit(@Param('id') id: string, @Body() createComputerDto: CreateComputerDto): Promise<Computer> {
+        return this.computersService.edit(id, createComputerDto);
     }
 
     @Get()

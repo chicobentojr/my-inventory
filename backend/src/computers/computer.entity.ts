@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-import { Branch } from 'src/branchs/branch.entity';
+import { Branch } from 'src/branches/branch.entity';
 
 export enum ComputerBrand {
     SAMSUNG = "Samsung",
@@ -28,6 +28,6 @@ export class Computer {
     })
     brand: ComputerBrand;
 
-    @ManyToOne(type => Branch, branch => branch.airConditioners)
+    @ManyToOne(type => Branch, branch => branch.computers, { onDelete: "CASCADE" })
     branch: Branch;
 }

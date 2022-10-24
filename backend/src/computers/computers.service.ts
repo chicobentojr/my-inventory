@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Branch } from 'src/branches/branch.entity';
 import { Repository } from 'typeorm';
 import { Computer } from './computer.entity';
 import { CreateComputerDto } from './dto/computer.dto';
@@ -9,20 +10,35 @@ export class ComputersService {
     constructor(
         @InjectRepository(Computer)
         private readonly computersRepository: Repository<Computer>,
+        @InjectRepository(Branch)
+        private readonly branchRepository: Repository<Branch>,
     ) { }
 
-    create(createComputerDto: CreateComputerDto): Promise<Computer> {
-        const computer = new Computer();
-        computer.branch.id = createComputerDto.branchId;
-        computer.description = createComputerDto.description;
-        computer.quantity = createComputerDto.quantity;
-        computer.brand = createComputerDto.brand;
+    async create(createComputerDto: CreateComputerDto): Promise<Computer> {
+        const branch = await this.branchRepository.findOneBy({ id: createComputerDto.branchId })
+        return this.computersRepository.save({
+            ...createComputerDto,
+            branch
+        });
+    }
 
-        return this.computersRepository.save(computer);
+    async edit(id: string, createComputerDto: CreateComputerDto): Promise<Computer> {
+        const branch = await this.branchRepository.findOneBy({ id: createComputerDto.branchId })
+        const computer = await this.computersRepository.findOneBy({ id })
+        return this.computersRepository.save({
+            ...computer,
+            ...createComputerDto,
+            branch
+        });
     }
 
     async findAll(): Promise<Computer[]> {
-        return this.computersRepository.find();
+        return this.computersRepository.find({
+            relations: { branch: true }, order: {
+                branch: { name: 'ASC' },
+                description: 'ASC'
+            }
+        });
     }
 
     async findByBranch(branchId: string): Promise<Computer[]> {
@@ -32,6 +48,8 @@ export class ComputersService {
     findOne(id: string): Promise<Computer> {
         return this.computersRepository.findOneBy({ id: id });
     }
+
+
 
     async remove(id: string): Promise<void> {
         await this.computersRepository.delete(id);
