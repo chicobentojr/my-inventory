@@ -34,6 +34,10 @@ export default {
     fetchBranches: function() {
       getBranches().then((response) => {
         this.branches = response.data
+      }).finally(() => {
+        if (this.branches.length == 0) {
+          this.$router.push('branches')
+        }
       })
     },
     onComputerAdd: function () {

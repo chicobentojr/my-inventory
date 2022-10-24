@@ -56,7 +56,7 @@ a,
   background-color: #00bd7e40;
 }
 .content__form {
-  padding: 1em;
+  padding: 1em 0.2em;
 }
 
 .action-button {
@@ -76,11 +76,20 @@ a,
   cursor: pointer;
   width: max-content;
   background-color: #00bd7edd;
-  padding: 0.2em 1em;
+  padding: 0.6em 1em;
   border-radius: 5px;
   color: white;
   display: inline;
 }
 .button:hover {
   background-color: #00bd7e;
+}
+
+/* Input */
+label {
+  font-weight: bold;
+}
+input, select {
+  padding: 0.5em;
+  margin: 0.5em;
 }
