@@ -1,0 +1,95 @@
+@import './base.css';
+
+#app {
+  /* max-width: 1280px; */
+  margin: 0 auto;
+  padding: 2rem;
+
+  font-weight: normal;
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+/* @media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
+  #app {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 2rem;
+  }
+} */
+
+/* Custom */
+.table {
+  border: 1px dashed #00bd7e;
+}
+.table th {
+  border: 1px dashed #00bd7e;
+  font-weight: bolder;
+  padding: 0.2em 1em;
+}
+.table td {
+  border: 1px dashed #00bd7e;
+  padding: 0.2em 1em;
+}
+.container {
+  display: flex;
+  flex: 1;
+}
+
+.item--selected {
+  background-color: #00bd7e40;
+}
+.content__form {
+  padding: 1em 0.2em;
+}
+
+.action-button {
+  cursor: pointer;
+}
+
+.content {
+  margin: 0.2em;
+  padding: 1em;
+  border: 2px dotted #00bd7e;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.button {
+  cursor: pointer;
+  width: max-content;
+  background-color: #00bd7edd;
+  padding: 0.6em 1em;
+  border-radius: 5px;
+  color: white;
+  display: inline;
+}
+.button:hover {
+  background-color: #00bd7e;
+}
+
+/* Input */
+label {
+  font-weight: bold;
+}
+input, select {
+  padding: 0.5em;
+  margin: 0.5em;
+}
